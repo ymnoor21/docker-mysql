@@ -1,10 +1,6 @@
 FROM ubuntu:14.04.4
-MAINTAINER Yamin <ymnoor21@gmail.com>
+MAINTAINER Yamin Noor <ymnoor21@gmail.com>
 ENV DEBIAN_FRONTEND=noninteractive
-
-ENV MYSQL_PORT_3306_TCP_ADDR=172.17.0.2
-ENV MYSQL_ENV_MYSQL_ROOT_PASSWORD=foobar
-ENV MYSQL_PORT_3306_TCP_PORT=3306
 
 RUN \
   apt-get -y update && apt-get install -y wget \
