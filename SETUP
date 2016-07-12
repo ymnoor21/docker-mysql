@@ -1,6 +1,8 @@
 # Start a MySQL Server Instance
 docker run --name mysql_container -v /Users/yamin/Downloads/restserver:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=foobar -d ymnoor21/mysql5.7:v1 
 
+docker run --name mysql_container -e MYSQL_ROOT_PASSWORD=foobar -d ymnoor21/mysql5.7:v1 
+
 # Connect to MySQL from an Application in Another Docker Container
 docker run -p 8080:80 --name app_container --link mysql_container:mysql -d ymnoor21/uap:v1
 
