@@ -15,3 +15,7 @@ docker run -it --link mysql_container:mysql --rm ymnoor21/mysql5.7:v1 sh -c 'exe
 Run these mysql commands:
 1. CREATE USER 'root'@'ip_address' IDENTIFIED BY 'foobar';
 2. GRANT ALL PRIVILEGES ON *.* TO 'root'@'ip_address';
+
+# Create data only container:
+	1. Command: docker create -v /var/lib/mysql --name mysql_data ymnoor21/mysql5.7:v1
+	2. Command: docker run -d --volumes-from mysql_data --name mysql_container ymnoor21/mysql5.7:v1
