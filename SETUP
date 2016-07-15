@@ -18,4 +18,4 @@ Run these mysql commands:
 
 # Create data only container:
 	1. Command: docker create -v /var/lib/mysql --name mysql_data ymnoor21/mysql5.7:v1
-	2. Command: docker run -d --volumes-from mysql_data --name mysql_container ymnoor21/mysql5.7:v1
+	2. Command: docker run -d -it --volumes-from mysql_data --name mysql_container ymnoor21/mysql5.7:v1 /bin/bash
