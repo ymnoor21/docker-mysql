@@ -1,15 +1,15 @@
 # docker-mysql
 Its an effort to dockerize mysql 5.7 on a Ubuntu 14.04 setup.
 
-# Start a MySQL Server Instance
+### Start a MySQL Server Instance
 `docker run --name mysql_container -v /Users/yamin/Downloads/restserver:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=foobar -d ymnoor21/mysql5.7:v1`
 
 `docker run --name mysql_container -e MYSQL_ROOT_PASSWORD=foobar -d ymnoor21/mysql5.7:v1`
 
-# Connect to MySQL from an Application in Another Docker Container
+### Connect to MySQL from an Application in Another Docker Container
 `docker run -p 8080:80 --name app_container --link mysql_container:mysql -d ymnoor21/ap:v2`
 
-# Connect to MySQL from the MySQL Command Line Client
+### Connect to MySQL from the MySQL Command Line Client
 `docker run -it --link mysql_container:mysql --rm ymnoor21/mysql5.7:v1 sh -c 'exec mysql -h"$MYSQL_PORT_3306_TCP_ADDR" -P"$MYSQL_PORT_3306_TCP_PORT" -uroot -p"$MYSQL_ENV_MYSQL_ROOT_PASSWORD"'`
 
 if it throws error like this: 
@@ -20,7 +20,7 @@ Run these mysql commands:
 1. `CREATE USER 'root'@'ip_address' IDENTIFIED BY 'foobar';`
 2. `GRANT ALL PRIVILEGES ON *.* TO 'root'@'ip_address';`
 
-# Create data only container:
+### Create data only container:
 1. Create a container with 2 volume (one from host - Replace ~ below with user's home directory)
 
 `docker create --name mysql_data -v /var/lib/mysql -v ~/Docker_boxes/mysql-5.7/dump:/dump ymnoor21/mysql5.7:v1`
