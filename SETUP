@@ -17,5 +17,10 @@ Run these mysql commands:
 2. GRANT ALL PRIVILEGES ON *.* TO 'root'@'ip_address';
 
 # Create data only container:
-	1. Command: docker create -v /var/lib/mysql --name mysql_data ymnoor21/mysql5.7:v1
-	2. Command: docker run -d --volumes-from mysql_data --name mysql_container ymnoor21/mysql5.7:v1
+	1. Create a container with 2 volume (one from host - Replace ~ below with user's home directory)
+	docker create --name mysql_data -v /var/lib/mysql -v ~/Docker_boxes/mysql-5.7/dump:/dump ymnoor21/mysql5.7:v1
+	2. Now create a MySQL Server container using the previous container as volumes-from
+	docker run -d -it --name mysql_container --volumes-from mysql_data -e MYSQL_ROOT_PASSWORD=foobar ymnoor21/mysql5.7:v1
+	
+	(Note: Passing MySQL password is a security risk. Check this article [here](http://datacharmer.blogspot.com/2016/02/a-safer-mysql-box-in-docker.html) on how to mitigate this issue: 
+	
