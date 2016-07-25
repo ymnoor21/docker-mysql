@@ -1,2 +1,0 @@
-CREATE USER 'root'@'172.17.0.3' IDENTIFIED BY 'foobar';
-GRANT ALL PRIVILEGES ON *.* TO 'root'@'172.17.0.3';
