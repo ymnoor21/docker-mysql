@@ -27,7 +27,7 @@ RUN sed -i -e"s/^bind-address\s*=\s*127.0.0.1/bind-address = 0.0.0.0/" /etc/mysq
 RUN sed -i 's/^\(log_error\s.*\)/# \1/' /etc/mysql/my.cnf
   
 # Define default command.
-CMD ["sudo service mysql start"]
+CMD ["mysqld_safe"]
 
 # Expose ports.
 EXPOSE 3306
