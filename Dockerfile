@@ -2,6 +2,10 @@ FROM ubuntu:14.04.4
 MAINTAINER Yamin Noor <ymnoor21@gmail.com>
 ENV DEBIAN_FRONTEND=noninteractive
 
+# Set timezone
+RUN rm /etc/localtime
+RUN ln -s /usr/share/zoneinfo/America/Los_Angeles /etc/localtime
+
 # Download wget, mysql 5.7 deb package and install dpkg
 RUN \
   apt-get -y update && apt-get install -y wget \
@@ -23,13 +27,7 @@ RUN sed -i -e"s/^bind-address\s*=\s*127.0.0.1/bind-address = 0.0.0.0/" /etc/mysq
 RUN sed -i 's/^\(log_error\s.*\)/# \1/' /etc/mysql/my.cnf
   
 # Define default command.
-CMD ["mysqld_safe"]
-
-# add shell script and run some database commands
-ADD init-db.sh /home/init-db.sh
-ADD dump/sample.sql /home/sample.sql
-RUN chmod +x /home/init-db.sh \
-    && /home/init-db.sh
+CMD ["sudo service mysql start"]
 
 # Expose ports.
 EXPOSE 3306
