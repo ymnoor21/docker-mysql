@@ -2,7 +2,7 @@
 Its an effort to dockerize mysql 5.7 on a Ubuntu 14.04 setup.
 
 ### Start a MySQL Server Instance
-`docker run --name mysql_container -v /Users/yamin/Downloads/restserver:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=foobar -d ymnoor21/mysql5.7:v1`
+`docker run --name mysql_container -v /var/lib/mysql -e MYSQL_ROOT_PASSWORD=foobar -d ymnoor21/mysql5.7:v1`
 
 `docker run --name mysql_container -e MYSQL_ROOT_PASSWORD=foobar -d ymnoor21/mysql5.7:v1`
 
@@ -21,11 +21,11 @@ Run these mysql commands:
 2. `GRANT ALL PRIVILEGES ON *.* TO 'root'@'ip_address';`
 
 ### Create data only container:
-1. Create a container with 2 volume (one from host - Replace ~ below with user's home directory)
+Create a container with 2 volume (one from host - Replace ~ below with user's home directory)
 
 `docker create --name mysql_data -v /var/lib/mysql -v ~/Docker_boxes/mysql-5.7/dump:/dump ymnoor21/mysql5.7:v1`
 	
-2. Now create a MySQL Server container using the previous container as volumes-from
+Now create a MySQL Server container using the previous container as volumes-from
 	
 `docker run -d -it --name mysql_container --volumes-from mysql_data -e MYSQL_ROOT_PASSWORD=foobar ymnoor21/mysql5.7:v1 /bin/bash`
 	
