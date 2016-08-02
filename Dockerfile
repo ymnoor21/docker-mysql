@@ -25,9 +25,13 @@ RUN apt-get install -y mysql-server
 # edit mysql configuration
 RUN sed -i -e"s/^bind-address\s*=\s*127.0.0.1/bind-address = 0.0.0.0/" /etc/mysql/my.cnf
 RUN sed -i 's/^\(log_error\s.*\)/# \1/' /etc/mysql/my.cnf
+
+CMD ["sudo chown -R mysql:mysql /var/lib/mysql"]
+CMD ["sudo chmod -R 775 /var/lib/mysql"]
   
 # Define default command.
 CMD ["mysqld_safe"]
+CMD ["sudo service mysql start"]
 
 # Expose ports.
 EXPOSE 3306
