@@ -31,7 +31,6 @@ CMD ["sudo chmod -R 775 /var/lib/mysql"]
   
 # Define default command.
 CMD ["mysqld_safe"]
-CMD ["sudo service mysql start"]
 
 # Expose ports.
 EXPOSE 3306
